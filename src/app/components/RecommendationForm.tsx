@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 
 interface Recommendation {
     out: string;
@@ -140,7 +141,18 @@ export default function RecommendationForm() {
                 </button>
             </div>
 
-            {loading && <p className="mt-4">Loading...</p>}
+            {loading &&
+                <div className="flex justify-center">
+                    <Image
+                        className=""
+                        src="/spinner.svg"
+                        alt="Loading"
+                        width={100}
+                        height={100}
+                        priority
+                    />
+                </div>
+            }
             {error && <p className="text-red-500 mt-4">{error}</p>}
 
             {recommendation && (
