@@ -33,7 +33,7 @@ export default function Home() {
                                 Click on the Points tab<sup>1</sup>, and copy the team ID from the URL<sup>2</sup>
                             </p>
                             <p className="mb-3">
-                                Open Inspect Element (DevTools) and navigate to the Network tab<sup>3</sup>. Open the request for <code>'me/'</code><sup>4</sup>.
+                                Open Inspect Element (DevTools) and navigate to the Network tab<sup>3</sup>. Open the request for <code>&quot;me/&quot;</code><sup>4</sup>.
                             </p>
                             <p className="mb-3">
                                 Find the header named <code>cookie</code><sup>5</sup>. Right-click and copy the value.

@@ -43,6 +43,7 @@ export default function RecommendationForm() {
             setRecommendation(data);
         } catch (err) {
             setError("Error fetching recommendations.");
+            console.error(err);
         } finally {
             setLoading(false);
         }
@@ -67,6 +68,7 @@ export default function RecommendationForm() {
             setAIRecommendation(data.recommendations);
         } catch (err) {
             setError("Error fetching AI recommendations.");
+            console.error(err);
         } finally {
             setLoading(false);
         }
@@ -157,7 +159,7 @@ export default function RecommendationForm() {
                     />
                 </div>
             }
-            {error && <p className="text-red-500 mt-4">{error}</p>}
+            {error && <p className="text-red-500 mt-4 text-center">{error}</p>}
 
             {recommendation && (
                 <>
