@@ -22,6 +22,8 @@ export default function RecommendationForm() {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
 
+    const buttonsDisabled = !teamId.length || !cookie.length;
+
     const handleFetchSimpleRecommendation = async () => {
         setLoading(true);
         setError(null);
@@ -129,13 +131,15 @@ export default function RecommendationForm() {
             <div className="flex gap-4">
                 <button
                     onClick={handleFetchSimpleRecommendation}
-                    className="bg-blue-500 text-white px-4 py-2 rounded"
+                    className="btn bg-black text-white rounded-full rounded px-5 py-2 disabled:bg-gray-300"
+                    disabled={buttonsDisabled}
                 >
                     Simple Recommendation
                 </button>
                 <button
                     onClick={handleFetchAIRecommendation}
-                    className="bg-green-500 text-white px-4 py-2 rounded"
+                    className="btn bg-black text-white rounded-full rounded px-5 py-2 disabled:bg-gray-300"
+                    disabled={buttonsDisabled}
                 >
                     AI Recommendation
                 </button>
@@ -156,23 +160,29 @@ export default function RecommendationForm() {
             {error && <p className="text-red-500 mt-4">{error}</p>}
 
             {recommendation && (
-                <div className="mt-4">
-                    <h3 className="font-semibold">Simple Recommendations:</h3>
-                    <ul className="list-disc ml-5">
-                        {recommendation.map((rec, index) => (
-                            <li key={index}>
-                                <strong>Out:</strong> {rec.out}, <strong>In:</strong> {rec.in}, <strong>Cost:</strong> {rec.cost}
-                            </li>
-                        ))}
-                    </ul>
-                </div>
+                <>
+                    <hr className="my-3" />
+                    <div className="mt-4">
+                        <h3 className="font-semibold">Simple Recommendations:</h3>
+                        <ul className="list-disc ml-5">
+                            {recommendation.map((rec, index) => (
+                                <li key={index}>
+                                    <strong>Out:</strong> {rec.out}, <strong>In:</strong> {rec.in}, <strong>Cost:</strong> {rec.cost}
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                </>
             )}
 
             {aiRecommendation && (
-                <div className="mt-4">
-                    <h3 className="font-semibold">AI Recommendations:</h3>
-                    <pre className="bg-gray-100 p-2 rounded whitespace-pre-wrap break-words overflow-hidden">{aiRecommendation}</pre>
-                </div>
+                <>
+                    <hr className="my-3" />
+                    <div className="mt-4">
+                        <h3 className="font-semibold">AI Recommendations:</h3>
+                        <pre className="bg-gray-100 p-2 rounded whitespace-pre-wrap break-words overflow-hidden">{aiRecommendation}</pre>
+                    </div>
+                </>
             )}
         </div>
     );
