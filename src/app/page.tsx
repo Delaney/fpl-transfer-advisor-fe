@@ -10,14 +10,12 @@ export default function Home() {
     return (
         <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100 p-4">
             <div className="text-black">
-                <div className="flex gap-3 mb-4 justify-center items-center">
+                <div className="flex flex-col md:flex-row gap-3 mb-4 justify-center items-center">
                     <h3>How to Get Your Team ID and Cookie:</h3>
                     <button className="btn bg-black text-white rounded-full rounded px-5 py-2" onClick={() => setStepsModalOpen(true)}>Show Steps</button>
                 </div>
 
-                <div>
-                    <RecommendationForm />
-                </div>
+                <RecommendationForm />
 
                 {stepsModalOpen && (
                     <Modal

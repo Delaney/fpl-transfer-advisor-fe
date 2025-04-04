@@ -81,7 +81,7 @@ export default function RecommendationForm() {
 
     return (
         <div className="p-6 bg-white rounded-lg shadow-md max-w-2xl mx-auto text-black">
-            <h2 className="text-xl font-bold mb-4">FPL Transfer Advisor</h2>
+            <h2 className="text-center text-xl font-bold mb-4">FPL Transfer Advisor</h2>
 
             <div className="mb-4">
                 <label className="block text-sm font-semibold">Team ID</label>
@@ -130,7 +130,7 @@ export default function RecommendationForm() {
                 </div>
             </div>
 
-            <div className="flex gap-4">
+            <div className="flex flex-col md:flex-row gap-4">
                 <button
                     onClick={handleFetchSimpleRecommendation}
                     className="btn bg-black text-white rounded-full rounded px-5 py-2 disabled:bg-gray-300"
