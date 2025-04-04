@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "FPL Transfer Advisor",
-  description: "https://github.com/Delaney/fpl-transfer-advisor-fe/",
+  description: "Get AI recommendations for your next FPL transfers",
 };
 
 export default function RootLayout({
