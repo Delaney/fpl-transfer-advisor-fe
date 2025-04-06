@@ -29,7 +29,7 @@ export default function RecommendationForm() {
         setError(null);
         clearRecommendations();
         try {
-            const response = await fetch(process.env.NEXT_PUBLIC_SERVER_URL + `simple-analysis-${mode}`, {
+            const response = await fetch(process.env.NEXT_PUBLIC_SERVER_URL + `simple-analysis/${mode}`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
