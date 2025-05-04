@@ -15,26 +15,25 @@ interface AIRecommendation {
 
 export default function RecommendationForm() {
     const [teamId, setTeamId] = useState("");
-    const [cookie, setCookie] = useState("");
-    const [mode, setMode] = useState("single");
+    const [transfers, setTransfers] = useState("");
     const [recommendation, setRecommendation] = useState<Recommendation[] | null>(null);
     const [aiRecommendation, setAIRecommendation] = useState<string | null>(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
 
-    const buttonsDisabled = !teamId.length || !cookie.length;
+    const buttonsDisabled = !teamId.length || !transfers;
 
     const handleFetchSimpleRecommendation = async () => {
         setLoading(true);
         setError(null);
         clearRecommendations();
         try {
-            const response = await fetch(process.env.NEXT_PUBLIC_SERVER_URL + `simple-analysis/${mode}`, {
+            const response = await fetch(process.env.NEXT_PUBLIC_SERVER_URL + `simple-analysis`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify({ teamId, cookie }),
+                body: JSON.stringify({ teamId, transfers }),
             });
 
             if (!response.ok) throw new Error("Failed to fetch recommendations");
@@ -59,7 +58,7 @@ export default function RecommendationForm() {
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify({ teamId, cookie }),
+                body: JSON.stringify({ teamId, transfers }),
             });
 
             if (!response.ok) throw new Error("Failed to fetch AI recommendations");
@@ -84,49 +83,26 @@ export default function RecommendationForm() {
             <h2 className="text-center text-xl font-bold mb-4">FPL Transfer Advisor</h2>
 
             <div className="mb-4">
-                <label className="block text-sm font-semibold">Team ID</label>
-                <input
-                    type="text"
-                    className="w-full p-2 border rounded"
-                    value={teamId}
-                    onChange={(e) => setTeamId(e.target.value)}
-                />
-            </div>
-
-            <div className="mb-4">
-                <label className="block text-sm font-semibold">Cookie</label>
-                <textarea
-                    className="w-full p-2 border rounded"
-                    value={cookie}
-                    onChange={(e) => setCookie(e.target.value)}
-                />
-            </div>
-
-            <div className="mb-4">
-                <label className="block text-sm font-semibold mb-2">Mode</label>
-                <div className="flex flex-col gap-1">
-                    <label>
+                <div className="flex flex-row gap-4">
+                    <div className="w-full">
+                        <label className="block text-sm font-semibold">Team ID</label>
                         <input
-                            type="radio"
-                            name="mode"
-                            value="single"
-                            checked={mode === "single"}
-                            onChange={(e) => setMode(e.target.value)}
-                            className="mr-2"
+                            type="text"
+                            className="w-full p-2 border rounded"
+                            value={teamId}
+                            onChange={(e) => setTeamId(e.target.value)}
                         />
-                        Single
-                    </label>
-                    <label>
+                    </div>
+                    <div className="w-full">
+                        <label className="block text-sm font-semibold">No of Transfers</label>
                         <input
-                            type="radio"
-                            name="mode"
-                            value="multiple"
-                            checked={mode === "multiple"}
-                            onChange={(e) => setMode(e.target.value)}
-                            className="mr-2"
+                            type="number"
+                            className="w-full p-2 border rounded"
+                            min={1} max={11}
+                            value={transfers}
+                            onChange={(e) => setTransfers(e.target.value)}
                         />
-                        Multiple
-                    </label>
+                    </div>
                 </div>
             </div>
 
